@@ -1,6 +1,7 @@
 export async function getPostBySlug() {
   
-const res = await fetch('https://try.orchardcore.net/astroblog/api/graphql', {
+let baseUrl = import.meta.env.API_URL
+const res = await fetch(baseUrl + '/api/graphql', {
   method: 'POST',
   headers: {
   'Content-Type': 'application/json'

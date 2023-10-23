@@ -3,10 +3,11 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getPostBySlug } from '../../utils/getPostBySlug.ts';
 import FormattedDate from '../../components/FormattedDate.astro';
 
-const res = await fetch('https://try.orchardcore.net/astroblog/api/graphql', {
+let baseUrl = import.meta.env.API_URL
+
+const res = await fetch(baseUrl + '/api/graphql', {
   method: 'POST',
   headers: {
   'Content-Type': 'application/json'
@@ -100,15 +101,15 @@ const posts = jsonResponse.data.blogPost;
 		<main>
 			<section>
 				<ul>
-					<!-- <p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>-->
 					{
 						posts.map((post) => (
-							<li>
+							<li>							
 								<a href={`/blog/${post.path}/`}>
-									<img width={720} height={360} src={"https://try.orchardcore.net/" + post.image.urls[0] + "?width=720"} alt="" /> 									
-									<h4 class="title">{post.displayText}</h4>									
+									<img width={480} height={240} src={baseUrl + post.image.urls[0] + "?width=480&height=240&rmode=crop"} alt="" /> 																				
+									<p class="date">
+										<FormattedDate date={new Date(Date.parse(post.publishedUtc))} />
+									</p>								
+									<h4 class="title">{post.displayText}</h4>
 								</a>
 							</li>
 						))
