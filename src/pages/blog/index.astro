@@ -5,9 +5,10 @@ import Footer from '../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import FormattedDate from '../../components/FormattedDate.astro';
 
-let baseUrl = import.meta.env.API_URL
+let apiUrl = import.meta.env.API_URL
+let mediaUrl = import.meta.env.MEDIA_URL
 
-const res = await fetch(baseUrl + '/api/graphql', {
+const res = await fetch(apiUrl + '/api/graphql', {
   method: 'POST',
   headers: {
   'Content-Type': 'application/json'
@@ -105,7 +106,7 @@ const posts = jsonResponse.data.blogPost;
 						posts.map((post) => (
 							<li>							
 								<a href={`/blog/${post.path}/`}>
-									<img width={480} height={240} src={baseUrl + post.image.urls[0] + "?width=480&height=240&rmode=crop"} alt="" /> 																				
+									<img width={480} height={240} src={mediaUrl + post.image.urls[0] + "?width=480&height=240&rmode=crop"} alt="" /> 																				
 									<p class="date">
 										<FormattedDate date={new Date(Date.parse(post.publishedUtc))} />
 									</p>								
