@@ -1,15 +1,15 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+//import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
-//type Props = CollectionEntry<'blog'>['data'];
-
 let baseUrl = import.meta.env.API_URL
 
-const { displayText, subtitle, markdownBody, image, publishedUtc, title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { displayText, subtitle, markdownBody, image, publishedUtc, title, description, pubDate, updatedDate } = Astro.props;
+
+let heroImage = image.urls[0]
 ---
 
 <html lang="en">
@@ -61,7 +61,7 @@ const { displayText, subtitle, markdownBody, image, publishedUtc, title, descrip
 		<main>
 			<article>
 				<div class="hero-image">
-					{<img width={1024} height={600} src={baseUrl + image.urls[0] + "?width=1024&height=600&rmode=crop"} alt="" />}
+					{heroImage && <img width={1024} height={600} src={heroImage} alt="" />}
 				</div>
 				<div class="prose">
 					<div class="title">
