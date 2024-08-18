@@ -9,7 +9,7 @@ let mediaUrl = import.meta.env.MEDIA_URL
 
 const { displayText, subtitle, markdownBody, image, publishedUtc, title, description, pubDate, updatedDate } = Astro.props;
 
-let heroImage = mediaUrl + image.urls[0]
+let heroImage = mediaUrl + image.urls[0] + "?width=1024&height=600&rmode=crop"
 ---
 
 <html lang="en">
