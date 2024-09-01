@@ -11,7 +11,7 @@ const res = await fetch(apiUrl + '/api/graphql', {
 		'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-		"query": "query MyQuery {blogPost(status: PUBLISHED) { path displayText subtitle author modifiedUtc publishedUtc createdUtc image { urls } markdownBody { html } } }"
+		"query": "query MyQuery { blogPost(status: PUBLISHED) { path displayText subtitle author modifiedUtc publishedUtc createdUtc image { urls } markdownBody { html } } }"
 		})
 	})
 
